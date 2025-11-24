@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subashini R - IT Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a14 0%, #0d1121 50%, #0a1f35 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 20, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.7);
+            z-index: 1000;
+            border-bottom: 2px solid transparent;
+            background-image: linear-gradient(rgba(10, 10, 20, 0.98), rgba(10, 10, 20, 0.98)), 
+                              linear-gradient(90deg, #b537ff, #00d4ff, #b537ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #00d4ff;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #b537ff, #00d4ff);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: #b537ff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(10, 10, 20, 0.92);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::before,
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            animation: rotateBorder 4s linear infinite;
+        }
+
+        .hero-content::before {
+            top: -100px;
+            left: -100px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .hero-content::after {
+            bottom: -100px;
+            right: -100px;
+            background: linear-gradient(90deg, transparent, #b537ff, transparent);
+            animation-delay: -2s;
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+     .hero h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            text-shadow: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background: linear-gradient(rgba(10, 10, 20, 0.92), rgba(10, 10, 20, 0.92)) padding-box,
+                        linear-gradient(135deg, #b537ff, #00d4ff) border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-3px);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(181, 55, 255, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(181, 55, 255, 0.3);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #b537ff, #00d4ff, #b537ff);
+            margin: 1rem auto;
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(181, 55, 255, 0.3);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(10, 10, 20, 0.92);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: visible;
+            border: 3px solid transparent;
+            background-image: 
+                linear-gradient(rgba(10, 10, 20, 0.92), rgba(10, 10, 20, 0.92)),
+                linear-gradient(135deg, #b537ff, #00d4ff, #b537ff, #00d4ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.7),
+                0 0 10px rgba(181, 55, 255, 0.2),
+                0 0 20px rgba(0, 212, 255, 0.15),
+                inset 0 0 10px rgba(181, 55, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 20px 50px rgba(181, 55, 255, 0.4),
+                0 0 15px rgba(181, 55, 255, 0.3),
+                0 0 30px rgba(0, 212, 255, 0.25),
+                inset 0 0 15px rgba(181, 55, 255, 0.1);
+        }
+
+        .card h3 {
+            color: #b537ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px rgba(181, 55, 255, 0.3);
+        }
+
+        .card .date {
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card ul {
+            margin-left: 1.5rem;
+            color: #e0e0e0;
+            list-style-type: disc;
+        }
+
+        .card ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background: rgba(10, 10, 20, 0.92);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            position: relative;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border: 3px solid transparent;
+            background-image: 
+                linear-gradient(rgba(10, 10, 20, 0.92), rgba(10, 10, 20, 0.92)),
+                linear-gradient(135deg, #b537ff, #00d4ff, #b537ff, #00d4ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.7),
+                0 0 8px rgba(181, 55, 255, 0.15),
+                0 0 15px rgba(0, 212, 255, 0.1),
+                inset 0 0 8px rgba(181, 55, 255, 0.03);
+        }
+
+        .skill-category h3 {
+            color: #b537ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 3px rgba(181, 55, 255, 0.2);
+        }
+
+        .skill-tags-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #4a1570, #003d50);
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(74, 21, 112, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 21, 112, 0.5);
+            background: linear-gradient(135deg, #5a1a85, #004d65);
+        }
+
+        /* Education */
+        .education-card {
+            background: rgba(10, 10, 20, 0.92);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 3px solid transparent;
+            background-image: 
+                linear-gradient(rgba(10, 10, 20, 0.92), rgba(10, 10, 20, 0.92)),
+                linear-gradient(135deg, #b537ff, #00d4ff, #b537ff, #00d4ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.7),
+                0 0 10px rgba(181, 55, 255, 0.2),
+                0 0 20px rgba(0, 212, 255, 0.15),
+                inset 0 0 10px rgba(181, 55, 255, 0.05);
+        }
+
+        .education-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .education-card .institution {
+            color: #b537ff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .education-card p {
+            position: relative;
+            z-index: 1;
+            color: #e0e0e0;
+        }
+
+        .cgpa {
+            display: inline-block;
+            background: linear-gradient(135deg, #b537ff, #7e57ff);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(181, 55, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 20, 0.98);
+            color: #e0e0e0;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid transparent;
+            background-image: linear-gradient(rgba(10, 10, 20, 0.98), rgba(10, 10, 20, 0.98)), 
+                              linear-gradient(90deg, #b537ff, #00d4ff, #b537ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Subashini R</h1>
+            <p class="subtitle">IT Professional | AI Enthusiast | Data Analyst</p>
+            <p>Dedicated and motivated IT student with strong technical skills in AI, data analysis, and cybersecurity. Passionate about leveraging technology to solve real-world problems.</p>
+            
+            <div class="contact-info">
+                <a href="mailto:subashinir2025@gmail.com">📧 Email</a>
+                <a href="https://www.linkedin.com/in/subashinichitra" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/subashinichitra" target="_blank">💻 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card">
+            <h3>B.Tech in Information Technology</h3>
+            <p class="institution">Perunthalaivar Kamarajar Institute of Engineering and Technology, Karaikal</p>
+            <p>Expected Graduation: July 2026</p>
+            <div class="cgpa">CGPA: 8.58</div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-tags-wrapper">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-tags-wrapper">
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">PowerPoint</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Google Colab</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <div class="skill-tags-wrapper">
+                    <span class="skill-tag">Communication</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Problem-Solving</span>
+                    <span class="skill-tag">Adaptability</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>AI Intern</h3>
+                <p class="date">National Institute of Technology, Puducherry</p>
+                <p class="date">June 2024 – July 2025</p>
+                <ul>
+                    <li>Completed full-time internship in Artificial Intelligence with focus on healthcare applications</li>
+                    <li>Worked on medical image analysis for lung disease detection</li>
+                    <li>Gained hands-on experience with CNN, XGBoost, RFE-SVM and ReciproCAM</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Python Data Analysis Intern</h3>
+                <p class="date">GROWAI</p>
+                <p class="date">December 2024 - March 2025</p>
+                <ul>
+                    <li>Utilized Python (Pandas, NumPy, Matplotlib) for data analysis and visualization</li>
+                    <li>Collaborated on real-world projects to automate data workflows</li>
+                    <li>Generated performance dashboards for data-driven decision-making</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>API Health Checker</h3>
+                <p class="date">Recent Project</p>
+                <ul>
+                    <li>Developed a comprehensive API health monitoring tool that checks the availability, response time, and status of multiple APIs</li>
+                    <li>The system includes automated alerts for downtime, performance metrics visualization, and detailed logging for debugging purposes</li>
+                    <li>Implemented using Python with scheduling capabilities for continuous monitoring</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Cybersecurity - Data Breach Checker</h3>
+                <p class="date">May 2025</p>
+                <ul>
+                    <li>Developed tool to check if emails/passwords were exposed in data breaches</li>
+                    <li>Implemented weak password identification and user warnings</li>
+                    <li>Added real-time alerts and suspicious login activity monitoring</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>AI Healthcare - Lung Disease Detection</h3>
+                <p class="date">July 2025</p>
+                <ul>
+                    <li>Detected COVID-19, pneumonia and lung tumors using X-ray and CT scans</li>
+                    <li>Developed three hybrid AI models using ReciproCAM, XGBoost and SVM</li>
+                    <li>Applied image preprocessing for better model performance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>TCS iON Career Edge - Young Professional</h3>
+                <p class="date">2025</p>
+                <ul>
+                    <li>Successfully completed the TCS iON Career Edge Young Professional certification program</li>
+                    <li>Gained industry-relevant skills in professional development, business communication, and workplace readiness</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Python Data Analysis Intern</h3>
+                <p class="date">GrowAI - January 2025</p>
+                <ul>
+                    <li>6-month training program covering Python basics to advanced</li>
+                    <li>Data structures, file handling, OOP concepts</li>
+                    <li>Practical tech applications and projects</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>AI in Medical Imaging</h3>
+                <p class="date">July 2025</p>
+                <ul>
+                    <li>Research project on lung disease detection</li>
+                    <li>Worked with hybrid AI models and image preprocessing</li>
+                    <li>Applied visual heatmaps and explainable AI techniques</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>NPTEL - Soft Skills Courses</h3>
+                <p class="date">October 2024 & March 2025</p>
+                <ul>
+                    <li>Developing Soft Skills and Personality</li>
+                    <li>Effective Writing</li>
+                    <li>Communication and professional behavior enhancement</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Subashini R. All Rights Reserved.</p>
+        <p>Built with passion and dedication</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.card, .skill-category, .education-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
